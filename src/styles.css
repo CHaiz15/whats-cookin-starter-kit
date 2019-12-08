@@ -3,6 +3,7 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: 'Prata', serif;
+  background-image: url("../images/site-bg.jpg");
 }
 
 main{
@@ -13,10 +14,14 @@ main{
 }
 
 .recipe-card {
+  display: flex;
+  flex-direction: row;
   width:30%;
   height:200px;
   background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
   margin: 20px 5px 20px 5px;
+  box-shadow: 10px 10px 14px 0px #000000;
+  border-radius: 5px;
 }
 
 .card-display {
@@ -25,7 +30,7 @@ main{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: red;
+  background-color: translucent;
 }
 
 .ten-spacer {
@@ -135,8 +140,71 @@ h1{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   width: 10%;
   background-color: #268AFF;
+}
+
+/* Creating the favorite heart on the card */
+.heart {
+  background-color: #FF6665;
+  display: inline-block;
+  opacity: .6;
+  height: 30px;
+  margin: 0 10px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 30px;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: #FF6665;
+  border-radius: 50%;
+  height: 30px;
+  position: absolute;
+  width: 30px;
+}
+
+.heart:before {
+  top: -15px;
+  left: 0;
+}
+
+.heart:after {
+  left: 15px;
+  top: 0;
+}
+
+.heart:hover,
+.heart:hover:before,
+.heart:hover:after {
+  background-color: red;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.button-arrangement {
+  width:20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.plus {
+  height: 50px;
+  width: 50px;
+  background-image: url("../images/Plus_symbol.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: translucent;
+}
+
+.plus:hover {
+cursor: pointer;
 }
 
   @keyframes button-slide {
@@ -177,6 +245,7 @@ h1{
       border-right: rgba(0,0,0,0.0);
       border-left: rgba(0,0,0,0.0);
       width: 75%;
+      opacity: 0;
     }
 
     80% {
@@ -191,7 +260,7 @@ h1{
       width: 0%;
       border-left: rgba(0,0,0,0.0);
       border-right: rgba(0,0,0,0.0);
-      background-color: white;
+      opacity: 0;
     }
 
     100% {

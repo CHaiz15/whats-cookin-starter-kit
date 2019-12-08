@@ -18,14 +18,17 @@ function animateNavBar (){
     console.log('hi');
     navBar.removeAttribute("style");
     navBar.classList.add("main-nav");
+    
     for(i = 0; i < welcomeBoxes.length; i++){
       welcomeBoxes[i].classList.remove("welcome");
       welcomeBoxes[i].classList.remove("faded");
       welcomeBoxes[i].classList.add("nav-popup");
       welcomeBoxes[i].classList.add("popup-animate");
     }
+
     next.remove();
-    body.innerHTML += `
+    body.innerHTML +=
+    `
     <main>
     <section class="ten-spacer"></section>
     <section class="card-display"></section>
@@ -39,7 +42,14 @@ function instantiateRecipes() {
   let cardDisplay = document.querySelector(".card-display")
   for(i = 0; i < 50; i++)
     cardDisplay.innerHTML += `
-    <div class="recipe-card"></div>
+    <div class="recipe-card">
+      <div class="card-text">
+      </div>
+      <div class="button-arrangement">
+        <div class="heart"></div>
+        <div class="plus"></div>
+      </div>
+    </div>
     `
 }
 
