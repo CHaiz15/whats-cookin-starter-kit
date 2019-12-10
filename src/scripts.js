@@ -19,20 +19,22 @@ function animateNavBar (){
     console.log('hi');
     navBar.removeAttribute("style");
     navBar.classList.add("main-nav");
-
     for(i = 0; i < welcomeBoxes.length; i++){
       welcomeBoxes[i].classList.remove("welcome");
       welcomeBoxes[i].classList.remove("faded");
       welcomeBoxes[i].classList.add("nav-popup");
       welcomeBoxes[i].classList.add("popup-animate");
-    }
+    };
+    navBar.innerHTML += `
+    <aside class="filter-area"></aside>
+    `;
     body.innerHTML +=
     `
     <main>
     <section class="ten-spacer"></section>
     <section class="card-display"></section>
     </main>
-    `
+    `;
     instantiateRecipes();
   }, 1500);
 }
