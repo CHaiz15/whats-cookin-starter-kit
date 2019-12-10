@@ -68,8 +68,8 @@ nav {
 .nav-buttons {}
 
 .nav-popup {
-  width: 95%;
-  height: 75px;
+  width:95%;
+  height:7%;
   background-color: #FD9A28;
   margin: 7px 0px 7px 0px;
 }
@@ -169,18 +169,12 @@ h1 {
   width: 90%;
 }
 
-@keyframes button-slide {
-  from {
-    margin-right: 100%;
-    width: 300%;
-  }
 
-  to {
-    /* position: relative;
-      top: 40px; */
-    margin-right: 0%;
-    width: 100%;
-  }
+ @keyframes button-slide {
+   from {
+   position: relative;
+   left: -100px;
+   }
 }
 
 @keyframes fade-out {
