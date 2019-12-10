@@ -3,12 +3,15 @@ const expect = chai.expect;
 
 const User = require('../classes/User');
 const users = require('../data/users');
+const recipeData = require('../data/recipes.js');
+
 
 describe('User', () => {
   let user;
 
   beforeEach(() => {
     user = new User(users[0]);
+    // add values to past tests?
   });
 
   it('should be a function', function() {
@@ -34,4 +37,14 @@ describe('User', () => {
   it('should have a default pantry of users[0].pantry', function() {
     expect(user.pantry).to.equal(users[0].pantry);
   });
+
+  it('should add recipe to this.favoriteRecipes when user favorites recipe', function() {
+    user.favoriteRecipe(recipeData);
+    expect(user.favoriteRecipes[0]).to.equal(recipeData[0]);
+  })
+
+  it.only('should find the recipes matching the name searched by the user', function() {
+    user.searchRecipes(recipeData, 'Cookie');
+    expect(user.matchingRecipes[0]).to.equal(recipeData[0]);
+  })
 })
