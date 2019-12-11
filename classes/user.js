@@ -16,10 +16,10 @@ class User {
   }
   searchRecipes(recipeData, searchValue){
     this.matchingRecipes = [];
-      let searchedRecipes = recipeData.filter(value => {
+      let searchedRecipes = recipeData.filter(recipe => {
         searchValue = searchValue.toLowerCase();
-        value.name = value.name.toLowerCase();
-      return value.name.includes(searchValue);
+        recipe.name = recipe.name.toLowerCase();
+      return recipe.name.includes(searchValue);
     })
     searchedRecipes.forEach(recipe => {
       this.matchingRecipes.push(recipe);
