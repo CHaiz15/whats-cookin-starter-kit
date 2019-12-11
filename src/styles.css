@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: 'Prata', serif;
-  background-image: url("../images/site-bg.jpg");
+  background: linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0, .15)), url("../images/site-bg.jpg");
 }
 
 main {
@@ -65,13 +65,13 @@ nav {
 .welcome {
   width: 27%;
   height: 200px;
-  background-color: #268AFF;
+  background-color: #559A3A;
   margin: 5% 4% 5% 4%;
-  border-radius: 2%;
+  border-radius: 5%;
   background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  box-shadow: 10px 10px 14px 0px #000000;
+  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
 }
 
 .welcome:hover {
@@ -82,15 +82,17 @@ nav {
   cursor: none;
 }
 
+
 .nav-buttons {}
 
 .nav-popup {
-  width: 95%;
-  height: 75px;
-  background-color: #FD9A28;
+  width:95%;
+  height:7%;
+  background-color: #559A3A;
   margin: 7px 0px 7px 0px;
 }
 
+.filter-area,
 .popup-animate {
   animation-name: button-slide;
   animation-duration: 1s;
@@ -106,7 +108,7 @@ h1 {
   display: flex;
   justify-content: center;
   color: white;
-  background-color: #FD9A28;
+  background-color: #559A3A;
 }
 
 .menu-box {
@@ -127,17 +129,16 @@ h1 {
   animation-fill-mode: forwards;
 }
 
-.recipes {
+/* .recipes {
   width: 50px;
   background-color: blue;
   height: 50px;
-  display: flex;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   background-color: translucent;
-}
+} */
 
 .main-nav {
   position: fixed;
@@ -150,6 +151,14 @@ h1 {
   justify-content: flex-start;
   width: 10%;
   background-color: #268AFF;
+}
+
+.filter-area {
+  background-color: white;
+  width: 90%;
+  height: 50%;
+  margin-top: 27%;
+  
 }
 
 /* Creating the favorite heart on the card */
@@ -186,18 +195,12 @@ h1 {
   width: 90%;
 }
 
-@keyframes button-slide {
-  from {
-    margin-right: 100%;
-    width: 300%;
-  }
 
-  to {
-    /* position: relative;
-      top: 40px; */
-    margin-right: 0%;
-    width: 100%;
-  }
+ @keyframes button-slide {
+   from {
+   position: relative;
+   left: -100px;
+   }
 }
 
 @keyframes fade-out {
