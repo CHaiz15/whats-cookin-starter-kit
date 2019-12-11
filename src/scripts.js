@@ -25,9 +25,9 @@ function animateNavBar (){
       welcomeBoxes[i].classList.add("nav-popup");
       welcomeBoxes[i].classList.add("popup-animate");
     };
-    navBar.innerHTML += `
-    <aside class="filter-area"></aside>
-    `;
+    // navBar.innerHTML += `
+    // <div class="filter-area"></div>
+    // `;
     body.innerHTML +=
     `
     <main>
