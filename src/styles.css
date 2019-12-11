@@ -13,6 +13,23 @@ main {
   height: 100%;
 }
 
+.search {
+  visibility: hidden;
+  width: 25%;
+  height: 100%;
+  font-size: 40px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+}
+
+.search-btn {
+  visibility: hidden;
+  width: 25%;
+  height: 100%;
+  margin-top: 10px;
+}
+
 .recipe-card {
   display: flex;
   flex-direction: row;

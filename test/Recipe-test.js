@@ -3,12 +3,14 @@ const expect = chai.expect;
 
 const Recipe = require('../classes/Recipe');
 const recipeData = require('../data/recipes.js');
+const ingredientsData = require('../data/ingredients.js');
 
 describe('Recipe', () => {
   let recipe;
 
   beforeEach(() => {
-    recipe = new Recipe(recipeData[0]);
+    recipe = new Recipe(recipeData[0], ingredientsData[0]);
+    
   });
 
   it('should be a function', function() {
@@ -32,6 +34,6 @@ describe('Recipe', () => {
   });
 
   it('should have default tags of recipeData[0].tags', function() {
-      expect(recipe.tags).to.equal(recipeData[0].tags);
+    expect(recipe.tags).to.equal(recipeData[0].tags);
   });
 })

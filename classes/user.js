@@ -1,25 +1,24 @@
 class User {
-  constructor(users) {
+  constructor(users, recipeData) {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
     this.id = users.id;
     this.name = users.name;
     this.pantry = users.pantry;
     this.matchingRecipes = [];
+    this.recipeData = recipeData;
   }
   decideRecipe(){
 
   }
-  favoriteRecipe(recipeData){
-    // will pass in the recipeData of the recipe that was clicked and
-    // push into this.favoriteRecipes
-    this.favoriteRecipes.push(recipeData[0]);
+  favoriteRecipe(clickedCardNum){
+    this.favoriteRecipes.push(recipeData[clickedCardNum]);
   }
   searchRecipes(recipeData, searchValue){
-      let foo = recipeData.filter(value => {
+      let searchedRecipes = recipeData.filter(value => {
       return value.name.includes(searchValue);
     })
-    this.matchingRecipes.push(foo[0]);
+    this.matchingRecipes.push(searchedRecipes);
     // probably use filter && || find to search by ingredient || name through
     // the favoriteRecipes array
   }

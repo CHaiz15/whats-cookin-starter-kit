@@ -4,11 +4,33 @@ const welcomeBoxes = document.querySelectorAll('.menu-box');
 const cardHolder = document.querySelector('.recipe-holder');
 const allRecipes = document.querySelector('.all-recipes-box');
 const pageTitle = document.querySelector('h1');
-var heartButton;
+let searchButton = document.querySelector('.search-btn');
+const searchInput = document.querySelector('.search');
+const user = new User(users);
+let heartButton;
 
-allRecipes.addEventListener("click", animateNavBar);
+window.addEventListener("click", functionRunner);
+function functionRunner() {
+  if (event.target.classList.contains('all-recipes-box')) {
+    animateNavBar();
+  }
+  if (event.target.classList.contains('search-btn')) {
+    addToSearchRecipes();
+  }
+}
+// search bar functionality, filter functionality, and clicked recipe pops up
 
-function animateNavBar (){
+function addToSearchRecipes() {
+  const searchInput = document.querySelector('.search');
+  // console.log(document.querySelector('.search'));
+  console.log(searchInput);
+  // console.log(searchInput.value); idk why this doesnt work
+  console.log(document.querySelector('.search').value);
+  user.searchRecipes(recipeData, document.querySelector('.search').value);
+  instantiateRecipes(user.matchingRecipes);
+}
+
+function animateNavBar() {
   for(i = 0; i < welcomeBoxes.length; i++){
     welcomeBoxes[i].classList.add('faded');
   }
@@ -16,7 +38,8 @@ function animateNavBar (){
   navBar.style.animationName = 'nav-animation';
   //insert new nav bar here and new divs for the 4 pages
   setTimeout(function(){
-    console.log('hi');
+    searchButton.style.visibility = 'initial';
+    searchInput.style.visibility = 'initial';
     navBar.removeAttribute("style");
     navBar.classList.add("main-nav");
 
@@ -33,16 +56,17 @@ function animateNavBar (){
     <section class="card-display"></section>
     </main>
     `
-    instantiateRecipes();
+
+    instantiateRecipes(recipeData);
   }, 1500);
 }
 
-function instantiateRecipes() {
+function instantiateRecipes(data) {
   pageTitle.innerHTML = 'All Recipes!';
   let cardDisplay = document.querySelector(".card-display");
-  for(i = 0; i < recipeData.length; i++) {
+  for(i = 0; i < data.length; i++) {
     cardDisplay.innerHTML += `
-    <button class="recipe-card card${i} dataset=${i}>
+    <button alt='${data[i].name}' class="recipe-card card${i} data-num='${i}'>
       <div class="card-text">
       </div>
       <div class="button-arrangement">
@@ -51,9 +75,8 @@ function instantiateRecipes() {
       </div>
     </button>
     `
-    console.log(recipeData[i].tags);
     let card = document.querySelector(`.card${i}`);
-    card.style.backgroundImage = `url(${recipeData[i].image})`;
+    card.style.backgroundImage = `url(${data[i].image})`;
     card.style.backgroundSize = 'cover';
     heartButton = document.querySelector('.heart');
     }
@@ -64,10 +87,11 @@ function instantiateRecipes() {
 function addFavoriteRecipe() {
   heartButton.style.opacity = 1;
   heartButton.style.backgroundImage = "url('../images/heart-active.png')";
-  var clickedCard = event.target.parentNode.parentNode;
+  var clickedCardNum = event.target.parentNode.parentNode.classList[1].split('d')[1];
+  user.favoriteRecipe(clickedCardNum);
   // take the value of clicked card and send it on over to the user class method of favoriteRecipe
   // where it will add that recipe to the array and then be able to instantiate on favorite recipes.
 
   // **side note** we will need to log in a user and save their favorite recipes to local storage.
-  console.log(clickedCard);
+  console.log(clickedCardNum);
 }
