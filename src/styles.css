@@ -3,22 +3,38 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: 'Prata', serif;
-  background-image: url("../images/site-bg.jpg");
+  background: linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0, .15)), url("../images/site-bg.jpg");
 }
 
-main{
+main {
   display: flex;
   flex-direction: row;
-  width:100%;
+  width: 100%;
   height: 100%;
+}
+
+.search {
+  visibility: hidden;
+  width: 25%;
+  height: 100%;
+  font-size: 40px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+}
+
+.search-btn {
+  visibility: hidden;
+  width: 25%;
+  height: 100%;
+  margin-top: 10px;
 }
 
 .recipe-card {
   display: flex;
   flex-direction: row;
-  width:30%;
-  height:200px;
-  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
+  width: 30%;
+  height: 200px;
   margin: 20px 5px 20px 5px;
   box-shadow: 10px 10px 14px 0px #000000;
   border-radius: 5px;
@@ -34,8 +50,8 @@ main{
 }
 
 .ten-spacer {
-  width:10%;
-  height:100%;
+  width: 10%;
+  height: 100%;
 }
 
 nav {
@@ -44,48 +60,46 @@ nav {
   flex-direction: row;
   justify-content: space-around;
   width: 75%;
-  border-left: 4px solid #268AFF;
-  border-right: 4px solid #268AFF;
 }
 
 .welcome {
   width: 27%;
   height: 200px;
-  background-color: #268AFF;
+  background-color: #559A3A;
   margin: 5% 4% 5% 4%;
-  border-radius: 2%;
+  border-radius: 5%;
   background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
+}
+
+.welcome:hover {
+  cursor: pointer;
+}
+
+.welcome:active {
+  cursor: none;
 }
 
 
-  .welcome:hover {
-    cursor:pointer;
-  }
-
-  .welcome:active {
-    cursor:none;
-  }
-
-.nav-buttons {
-
-}
+.nav-buttons {}
 
 .nav-popup {
   width:95%;
-  height:75px;
-  background-color: #FD9A28;
+  height:7%;
+  background-color: #559A3A;
   margin: 7px 0px 7px 0px;
 }
 
+.filter-area,
 .popup-animate {
   animation-name: button-slide;
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-h1{
+h1 {
   margin-bottom: 0px;
 }
 
@@ -94,28 +108,20 @@ h1{
   display: flex;
   justify-content: center;
   color: white;
-  background-color: #FD9A28;
+  background-color: #559A3A;
 }
 
 .menu-box {
-/* used to select all boxes */
+  /* used to select all boxes */
 }
 
-.my-recipes-box {
+.my-recipes-box {}
 
-}
+.all-recipes-box {}
 
-.all-recipes-box {
+.pantry-box {}
 
-}
-
-.pantry-box {
-
-}
-
-.recipes-to-cook-box {
-
-}
+.recipes-to-cook-box {}
 
 .faded {
   animation-duration: 1.5s;
@@ -123,14 +129,16 @@ h1{
   animation-fill-mode: forwards;
 }
 
-.recipes {
+/* .recipes {
   width: 50px;
   background-color: blue;
   height: 50px;
   display: flex;
-  grid-template-columns: 1fr 7fr;
-  grid-template-rows: auto;
-}
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: translucent;
+} */
 
 .main-nav {
   position: fixed;
@@ -145,134 +153,103 @@ h1{
   background-color: #268AFF;
 }
 
+.filter-area {
+  background-color: white;
+  width: 90%;
+  height: 50%;
+  margin-top: 27%;
+  
+}
+
 /* Creating the favorite heart on the card */
 .heart {
-  background-color: #FF6665;
-  display: inline-block;
-  opacity: .6;
-  height: 30px;
-  margin: 0 10px;
-  position: relative;
-  top: 0;
-  transform: rotate(-45deg);
-  width: 30px;
+  background-image: url('../images/heart-active.png');
 }
 
-.heart:before,
-.heart:after {
-  content: "";
-  background-color: #FF6665;
-  border-radius: 50%;
-  height: 30px;
-  position: absolute;
-  width: 30px;
+.plus {
+  background-image: url("../images/Plus_symbol.png");
 }
 
-.heart:before {
-  top: -15px;
-  left: 0;
+.plus, .heart {
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.6;
 }
 
-.heart:after {
-  left: 15px;
-  top: 0;
-}
-
-.heart:hover,
-.heart:hover:before,
-.heart:hover:after {
-  background-color: red;
+.heart:hover, .plus:hover {
   opacity: 1;
   cursor: pointer;
 }
 
 .button-arrangement {
-  width:20%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
 
-.plus {
-  height: 50px;
-  width: 50px;
-  background-image: url("../images/Plus_symbol.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: translucent;
+.card {
+  width: 90%;
 }
 
-.plus:hover {
-cursor: pointer;
+
+ @keyframes button-slide {
+   from {
+   position: relative;
+   left: -100px;
+   }
 }
 
-  @keyframes button-slide {
-    from {
-      margin-right: 100%;
-      width: 300%;
-    }
+@keyframes fade-out {
+  0% {}
 
-    to {
-      /* position: relative;
-      top: 40px; */
-      margin-right: 0%;
-      width: 100%;
-    }
+  25% {
+    opacity: 0;
   }
 
+  100% {
+    opacity: 0;
+  }
+}
 
-  @keyframes fade-out {
-    0% {
+@keyframes nav-animation {
+  0% {}
 
-    }
-
-    25%{
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 0;
-    }
+  25% {
+    border-right: rgba(0, 0, 0, 0.0);
+    border-left: rgba(0, 0, 0, 0.0);
+    width: 75%;
+    opacity: 0;
   }
 
-  @keyframes nav-animation {
-    0% {
-
-    }
-
-    25% {
-      border-right: rgba(0,0,0,0.0);
-      border-left: rgba(0,0,0,0.0);
-      width: 75%;
-      opacity: 0;
-    }
-
-    80% {
-      position: fixed;
-      left: 0;
-      top: 0;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: space-around;
-      width: 0%;
-      border-left: rgba(0,0,0,0.0);
-      border-right: rgba(0,0,0,0.0);
-      opacity: 0;
-    }
-
-    100% {
-      position: fixed;
-      left: 0;
-      top: 0;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      width: 10%;
-      background-color: #268AFF;
-    }
+  80% {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 0%;
+    border-left: rgba(0, 0, 0, 0.0);
+    border-right: rgba(0, 0, 0, 0.0);
+    opacity: 0;
   }
+
+  100% {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10%;
+    background-color: #268AFF;
+  }
+}
