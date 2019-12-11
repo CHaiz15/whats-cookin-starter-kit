@@ -38,12 +38,12 @@ describe('User', () => {
     expect(user.pantry).to.equal(users[0].pantry);
   });
 
-  it('should add recipe to this.favoriteRecipes when user favorites recipe', function() {
+  it.skip('should add recipe to this.favoriteRecipes when user favorites recipe', function() {
     user.favoriteRecipe(recipeData);
     expect(user.favoriteRecipes[0]).to.equal(recipeData[0]);
   })
 
-  it.only('should find the recipes matching the name searched by the user', function() {
+  it('should find the recipes matching the name searched by the user', function() {
     user.searchRecipes(recipeData, 'Cookie');
     expect(user.matchingRecipes[0]).to.equal(recipeData[0]);
   })
