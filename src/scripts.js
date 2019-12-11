@@ -8,6 +8,8 @@ let searchButton = document.querySelector('.search-btn');
 const searchInput = document.querySelector('.search');
 const user = new User(users);
 let heartButton;
+let cardDisplay;
+
 
 window.addEventListener("click", functionRunner);
 function functionRunner() {
@@ -16,18 +18,14 @@ function functionRunner() {
   }
   if (event.target.classList.contains('search-btn')) {
     addToSearchRecipes();
+    displaySearchedRecipes();
   }
 }
 // search bar functionality, filter functionality, and clicked recipe pops up
 
 function addToSearchRecipes() {
   const searchInput = document.querySelector('.search');
-  // console.log(document.querySelector('.search'));
-  console.log(searchInput);
-  // console.log(searchInput.value); idk why this doesnt work
-  console.log(document.querySelector('.search').value);
   user.searchRecipes(recipeData, document.querySelector('.search').value);
-  instantiateRecipes(user.matchingRecipes);
 }
 
 function animateNavBar() {
@@ -63,7 +61,8 @@ function animateNavBar() {
 
 function instantiateRecipes(data) {
   pageTitle.innerHTML = 'All Recipes!';
-  let cardDisplay = document.querySelector(".card-display");
+  cardDisplay = document.querySelector(".card-display");
+  cardDisplay.innerHTML = '';
   for(i = 0; i < data.length; i++) {
     cardDisplay.innerHTML += `
     <button alt='${data[i].name}' class="recipe-card card${i} data-num='${i}'>
@@ -82,6 +81,25 @@ function instantiateRecipes(data) {
     }
     const favorite = document.querySelectorAll('.heart');
     favorite.forEach(card => card.addEventListener('click', addFavoriteRecipe))
+}
+
+function displaySearchedRecipes() {
+  cardDisplay.innerHTML = '';
+  user.matchingRecipes.forEach((recipe, i) => {
+    cardDisplay.innerHTML += `
+    <button alt='${recipe.name}' class="recipe-card card${i} data-num='${i}'>
+      <div class="card-text">
+      </div>
+      <div class="button-arrangement">
+        <div class="heart"></div>
+        <div class="plus"></div>
+      </div>
+    </button>
+    `
+    let card = document.querySelector(`.card${i}`);
+    card.style.backgroundImage = `url(${recipe.image})`;
+    card.style.backgroundSize = 'cover';
+  })
 }
 
 function addFavoriteRecipe() {

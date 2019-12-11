@@ -15,12 +15,15 @@ class User {
     this.favoriteRecipes.push(recipeData[clickedCardNum]);
   }
   searchRecipes(recipeData, searchValue){
+    this.matchingRecipes = [];
       let searchedRecipes = recipeData.filter(value => {
+        searchValue = searchValue.toLowerCase();
+        value.name = value.name.toLowerCase();
       return value.name.includes(searchValue);
     })
-    this.matchingRecipes.push(searchedRecipes);
-    // probably use filter && || find to search by ingredient || name through
-    // the favoriteRecipes array
+    searchedRecipes.forEach(recipe => {
+      this.matchingRecipes.push(recipe);
+    })
   }
 }
 
