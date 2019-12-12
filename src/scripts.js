@@ -1,27 +1,44 @@
 const body = document.querySelector('body');
 const navBar = document.querySelector('nav');
-const welcomeBoxes = document.querySelectorAll('.menu-box');
+const welcomeBoxes = document.querySelectorAll('.welcome');
 const cardHolder = document.querySelector('.recipe-holder');
-const allRecipes = document.querySelector('.all-recipes-box');
-const pageTitle = document.querySelector('h1');
-let searchButton = document.querySelector('.search-btn');
+const allRecipesBox = document.querySelector('.all-recipes-box');
+const pantryBox = document.querySelector('.pantry-box');
+const myRecipesBox = document.querySelector('.my-recipes-box');
+const recipesToCookBox = document.querySelector('.recipes-to-cook-box');
+const pageWelcome = document.querySelector('.page-welcome');
+const user = new User(users[(Math.round(Math.random() * 50))]);
+const searchButton = document.querySelector('.search-btn');
 const searchInput = document.querySelector('.search');
-const user = new User(users);
+const recipe = new Recipe(recipeData);
+const usersFavRecipes = JSON.parse(localStorage.getItem(`usersFavRecipes${user.id}`)) || [];
 let heartButton;
 let cardDisplay;
 
 
 window.addEventListener("click", functionRunner);
+pageWelcome.innerText = `Welcome, ${user.name}!`;
+
 function functionRunner() {
-  if (event.target.classList.contains('all-recipes-box')) {
+  if (event.target.classList.contains('menu-box')) {
     animateNavBar();
+    welcomeBoxes.forEach((box, i) => {
+      welcomeBoxes[i].classList.remove('menu-box');
+    });
+  }
+  if (event.target.classList.contains('all-recipes-box')) {
+    instantiateAllRecipes(recipeData);
+  }
+  if (event.target.classList.contains('my-recipes-box')) {
+    instantiateAllRecipes(user.favoriteRecipes);
   }
   if (event.target.classList.contains('search-btn')) {
     addToSearchRecipes();
-    displaySearchedRecipes();
+    instantiateAllRecipes(user.matchingRecipes);
   }
 }
-// search bar functionality, filter functionality, and clicked recipe pops up
+
+
 
 function addToSearchRecipes() {
   const searchInput = document.querySelector('.search');
@@ -29,18 +46,18 @@ function addToSearchRecipes() {
 }
 
 function animateNavBar() {
-  for(i = 0; i < welcomeBoxes.length; i++){
+  welcomeBoxes.forEach((box, i) => {
     welcomeBoxes[i].classList.add('faded');
-  }
+  });
   navBar.style.animationDuration = '1.5s';
   navBar.style.animationName = 'nav-animation';
   //insert new nav bar here and new divs for the 4 pages
-  setTimeout(function(){
-    searchButton.style.visibility = 'initial';
-    searchInput.style.visibility = 'initial';
+  setTimeout(function() {
+    searchButton.style.display = 'initial';
+    searchInput.style.display= 'initial';
     navBar.removeAttribute("style");
     navBar.classList.add("main-nav");
-    for(i = 0; i < welcomeBoxes.length; i++){
+    for (i = 0; i < welcomeBoxes.length; i++) {
       welcomeBoxes[i].classList.remove("welcome");
       welcomeBoxes[i].classList.remove("faded");
       welcomeBoxes[i].classList.add("nav-popup");
@@ -50,52 +67,28 @@ function animateNavBar() {
     // <div class="filter-area"></div>
     // `;
     body.innerHTML +=
-    `
+      `
     <main>
     <section class="ten-spacer"></section>
     <section class="card-display"></section>
     </main>
 
     `
-
-    instantiateRecipes(recipeData);
-
+    instantiateAllRecipes(recipeData);
   }, 1500);
 }
 
-function instantiateRecipes(data) {
-  pageTitle.innerHTML = 'All Recipes!';
+function instantiateAllRecipes(data) {
+  pageWelcome.innerHTML = 'All Recipes!';
   cardDisplay = document.querySelector(".card-display");
   cardDisplay.innerHTML = '';
-  for(i = 0; i < data.length; i++) {
+  data.forEach((recipe, i) => {
     cardDisplay.innerHTML += `
-    <button alt='${data[i].name}' class="recipe-card card${i} data-num='${i}'>
+    <button alt='${recipe.name}' class="recipe-card card${i} data-num='${recipe.id}'>
       <div class="card-text">
       </div>
       <div class="button-arrangement">
-        <div class="heart"></div>
-        <div class="plus"></div>
-      </div>
-    </button>
-    `
-    let card = document.querySelector(`.card${i}`);
-    card.style.backgroundImage = `url(${data[i].image})`;
-    card.style.backgroundSize = 'cover';
-    heartButton = document.querySelector('.heart');
-    }
-    const favorite = document.querySelectorAll('.heart');
-    favorite.forEach(card => card.addEventListener('click', addFavoriteRecipe))
-}
-
-function displaySearchedRecipes() {
-  cardDisplay.innerHTML = '';
-  user.matchingRecipes.forEach((recipe, i) => {
-    cardDisplay.innerHTML += `
-    <button alt='${recipe.name}' class="recipe-card card${i} data-num='${i}'>
-      <div class="card-text">
-      </div>
-      <div class="button-arrangement">
-        <div class="heart"></div>
+        <div class="heart heartid${i}"></div>
         <div class="plus"></div>
       </div>
     </button>
@@ -103,7 +96,13 @@ function displaySearchedRecipes() {
     let card = document.querySelector(`.card${i}`);
     card.style.backgroundImage = `url(${recipe.image})`;
     card.style.backgroundSize = 'cover';
+    let heart = document.querySelector(`.heartid${i}`);
+    heart.style.backgroundImage = 'url(../images/heart-active.png)';
+    heart.style.backgroundSize = 'cover';
+    heartButton = document.querySelector('.heart');
   })
+  const favorite = document.querySelectorAll('.heart');
+  favorite.forEach(card => card.addEventListener('click', addFavoriteRecipe))
 }
 
 function addFavoriteRecipe() {
@@ -111,9 +110,5 @@ function addFavoriteRecipe() {
   heartButton.style.backgroundImage = "url('../images/heart-active.png')";
   var clickedCardNum = event.target.parentNode.parentNode.classList[1].split('d')[1];
   user.favoriteRecipe(clickedCardNum);
-  // take the value of clicked card and send it on over to the user class method of favoriteRecipe
-  // where it will add that recipe to the array and then be able to instantiate on favorite recipes.
-
-  // **side note** we will need to log in a user and save their favorite recipes to local storage.
-  console.log(clickedCardNum);
+  user.saveToStorage(user.favoriteRecipes);
 }

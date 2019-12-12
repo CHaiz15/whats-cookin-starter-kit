@@ -13,8 +13,19 @@ main {
   height: 100%;
 }
 
+.page-title, .page-welcome {
+  background-color: white;
+  width: 15%;
+  text-align: center;
+  text-shadow: 20px;
+  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
+  border: black 2px solid;
+  border-radius: 5px;
+}
+
 .search {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
   width: 25%;
   height: 100%;
   font-size: 40px;
@@ -24,7 +35,8 @@ main {
 }
 
 .search-btn {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
   width: 25%;
   height: 100%;
   margin-top: 10px;
@@ -65,13 +77,11 @@ nav {
 .welcome {
   width: 27%;
   height: 200px;
-  background-color: #559A3A;
+  background-color: #ffffff;
   margin: 5% 4% 5% 4%;
+  border: black 2px solid;
   border-radius: 5%;
-  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
+  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6);
 }
 
 .welcome:hover {
@@ -88,7 +98,7 @@ nav {
 .nav-popup {
   width:95%;
   height:7%;
-  background-color: #559A3A;
+  background-color: #ffffff;
   margin: 7px 0px 7px 0px;
 }
 
@@ -111,17 +121,28 @@ h1 {
   background-color: #559A3A;
 }
 
-.menu-box {
-  /* used to select all boxes */
+.my-recipes-box, .all-recipes-box, .pantry-box, .recipes-to-cook-box {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.my-recipes-box {}
+.my-recipes-box {
+  background-image: url('../images/my-recipes.png');
+}
 
-.all-recipes-box {}
+.all-recipes-box {
+  background-image: url('../images/all-recipes.png');
+}
 
-.pantry-box {}
+.pantry-box {
+  background-image: url('../images/my-pantry.png');
+}
 
-.recipes-to-cook-box {}
+.recipes-to-cook-box {
+  background-image: url('../images/recipes-to-cook.png');
+
+}
 
 .faded {
   animation-duration: 1.5s;
@@ -158,13 +179,13 @@ h1 {
   width: 90%;
   height: 50%;
   margin-top: 27%;
-  
+
 }
 
 /* Creating the favorite heart on the card */
-.heart {
+/* .heart {
   background-image: url('../images/heart-active.png');
-}
+} */
 
 .plus {
   background-image: url("../images/Plus_symbol.png");
