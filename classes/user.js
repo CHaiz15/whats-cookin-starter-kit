@@ -11,11 +11,14 @@ class User {
   decideRecipe() {
 
   }
-  favoriteRecipe(clickedCardNum) {
-    if (!this.favoriteRecipes.includes(recipeData[clickedCardNum])) {
-      this.favoriteRecipes.push(recipeData[clickedCardNum]);
+  favoriteRecipe(addedCard) {
+    if (!this.favoriteRecipes.includes(addedCard)) {
+      this.favoriteRecipes.push(addedCard);
     } else {
-      console.log('shuck');
+      let unfavoritedRecipe = this.favoriteRecipes.find(recipe => addedCard);
+      this.favoriteRecipes = this.favoriteRecipes.filter(recipe => {
+        return recipe !== addedCard;
+      });
     }
   }
   searchRecipes(recipeData, searchValue) {

@@ -18,13 +18,12 @@ main {
   width: 15%;
   text-align: center;
   text-shadow: 20px;
-  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
   border: black 2px solid;
   border-radius: 5px;
 }
 
 .search {
-  /* visibility: hidden; */
   display: none;
   width: 25%;
   height: 100%;
@@ -35,7 +34,6 @@ main {
 }
 
 .search-btn {
-  /* visibility: hidden; */
   display: none;
   width: 25%;
   height: 100%;
@@ -50,6 +48,18 @@ main {
   margin: 20px 5px 20px 5px;
   box-shadow: 10px 10px 14px 0px #000000;
   border-radius: 5px;
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 200px;
+  margin: 20px 5px 20px 5px;
+  box-shadow: 10px 10px 14px 0px #000000;
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card-display {
@@ -81,7 +91,7 @@ nav {
   margin: 5% 4% 5% 4%;
   border: black 2px solid;
   border-radius: 5%;
-  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6);
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
 }
 
 .welcome:hover {
@@ -92,14 +102,14 @@ nav {
   cursor: none;
 }
 
-
 .nav-buttons {}
 
 .nav-popup {
-  width:95%;
-  height:7%;
+  width: 95%;
+  height: 7%;
   background-color: #ffffff;
   margin: 7px 0px 7px 0px;
+  border-radius: 5%;
 }
 
 .filter-area,
@@ -141,7 +151,6 @@ h1 {
 
 .recipes-to-cook-box {
   background-image: url('../images/recipes-to-cook.png');
-
 }
 
 .faded {
@@ -149,17 +158,6 @@ h1 {
   animation-name: fade-out;
   animation-fill-mode: forwards;
 }
-
-/* .recipes {
-  width: 50px;
-  background-color: blue;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: translucent;
-} */
 
 .main-nav {
   position: fixed;
@@ -179,13 +177,7 @@ h1 {
   width: 90%;
   height: 50%;
   margin-top: 27%;
-
 }
-
-/* Creating the favorite heart on the card */
-/* .heart {
-  background-image: url('../images/heart-active.png');
-} */
 
 .plus {
   background-image: url("../images/Plus_symbol.png");
@@ -204,6 +196,10 @@ h1 {
   cursor: pointer;
 }
 
+.heart-active {
+  opacity: 1;
+}
+
 .button-arrangement {
   width: 20%;
   display: flex;
@@ -216,12 +212,11 @@ h1 {
   width: 90%;
 }
 
-
- @keyframes button-slide {
-   from {
-   position: relative;
-   left: -100px;
-   }
+@keyframes button-slide {
+  from {
+    position: relative;
+    left: -100px;
+  }
 }
 
 @keyframes fade-out {
