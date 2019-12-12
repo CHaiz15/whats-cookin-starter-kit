@@ -7,12 +7,6 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.tags = recipeData.tags;
   }
-  searchByIngredient(){
-
-  }
-  filterByType(){
-
-  }
   getCost(){
 
   }

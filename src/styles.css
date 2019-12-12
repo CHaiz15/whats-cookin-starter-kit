@@ -13,8 +13,41 @@ main {
   height: 100%;
 }
 
+.recipe-info-title {
+  background-color: white;
+  width: 90%;
+  text-align: center;
+  text-shadow: 20px;
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
+  border: black 2px solid;
+  border-radius: 5px;
+}
+
+h4, ul, li {
+  font-size: 20px;
+  color: black;
+}
+
+.info {
+  background-color: white;
+  border: black 2px solid;
+  border-radius: 3%;
+}
+.page-title {
+  cursor: pointer;
+}
+.page-title, .page-welcome {
+  background-color: white;
+  width: 15%;
+  text-align: center;
+  text-shadow: 20px;
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
+  border: black 2px solid;
+  border-radius: 5px;
+}
+
 .search {
-  visibility: hidden;
+  display: none;
   width: 25%;
   height: 100%;
   font-size: 40px;
@@ -24,7 +57,7 @@ main {
 }
 
 .search-btn {
-  visibility: hidden;
+  display: none;
   width: 25%;
   height: 100%;
   margin-top: 10px;
@@ -38,6 +71,18 @@ main {
   margin: 20px 5px 20px 5px;
   box-shadow: 10px 10px 14px 0px #000000;
   border-radius: 5px;
+}
+
+.recipe-info {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 200px;
+  margin: 20px 5px 20px 5px;
+  box-shadow: 10px 10px 14px 0px #000000;
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .card-display {
@@ -65,13 +110,11 @@ nav {
 .welcome {
   width: 27%;
   height: 200px;
-  background-color: #559A3A;
+  background-color: #ffffff;
   margin: 5% 4% 5% 4%;
+  border: black 2px solid;
   border-radius: 5%;
-  background-image: url("https://spoonacular.com/recipeImages/595736-556x370.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 15px 15px 35px 0px rgba(0,0,0,0.6) ;
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
 }
 
 .welcome:hover {
@@ -83,13 +126,13 @@ nav {
 }
 
 
-.nav-buttons {}
-
 .nav-popup {
-  width:95%;
-  height:7%;
-  background-color: #559A3A;
+  width: 95%;
+  height: 7%;
+  background-color: #ffffff;
   margin: 7px 0px 7px 0px;
+  border-radius: 5%;
+  cursor: pointer;
 }
 
 .filter-area,
@@ -111,34 +154,33 @@ h1 {
   background-color: #559A3A;
 }
 
-.menu-box {
-  /* used to select all boxes */
+.my-recipes-box, .all-recipes-box, .pantry-box, .recipes-to-cook-box {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.my-recipes-box {}
+.my-recipes-box {
+  background-image: url('../images/my-recipes.png');
+}
 
-.all-recipes-box {}
+.all-recipes-box {
+  background-image: url('../images/all-recipes.png');
+}
 
-.pantry-box {}
+.pantry-box {
+  background-image: url('../images/my-pantry.png');
+}
 
-.recipes-to-cook-box {}
+.recipes-to-cook-box {
+  background-image: url('../images/recipes-to-cook.png');
+}
 
 .faded {
   animation-duration: 1.5s;
   animation-name: fade-out;
   animation-fill-mode: forwards;
 }
-
-/* .recipes {
-  width: 50px;
-  background-color: blue;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: translucent;
-} */
 
 .main-nav {
   position: fixed;
@@ -166,7 +208,6 @@ h1 {
   flex-direction: column;
 }
 
-/* Creating the favorite heart on the card */
 .heart {
   background-image: url('../images/heart-active.png');
 }
@@ -188,9 +229,15 @@ h1 {
   cursor: pointer;
 }
 
+
 .filter-options{
   display: flex;
   flex-direction: row;
+}
+
+.heart-active {
+  opacity: 1;
+
 }
 
 .button-arrangement {
@@ -205,12 +252,11 @@ h1 {
   width: 90%;
 }
 
-
- @keyframes button-slide {
-   from {
-   position: relative;
-   left: -100px;
-   }
+@keyframes button-slide {
+  from {
+    position: relative;
+    left: -100px;
+  }
 }
 
 @keyframes fade-out {
