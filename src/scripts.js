@@ -8,10 +8,12 @@ let searchButton = document.querySelector('.search-btn');
 const searchInput = document.querySelector('.search');
 const user = new User(users);
 //these variables are targeting HTML elements created later. They will be reassigned
+let yourNewArray;
+let filteredArray=[];
 let heartButton;
-let filterArea;
 let cardDisplay;
 let ingredientCheckBox;
+// let filterArea = [];
 let allIngredients = [];
 let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
@@ -139,13 +141,54 @@ function changeFilter(){
   })
 }
 
-function sortRecipes(event){
-  console.log(event.target.id);
+function sortRecipes(event) {
+  yourNewArray = allIngredients.filter(ingredient => {
+    return ingredient[0].includes(event.target.id);
+  })
   allIngredients.forEach(ingredient => {
     if(ingredient[0].includes(event.target.id)){
-      filterArea.innerHTML += `<input type="checkbox" id="" name="${ingredient}">${ingredient}`
+      filterArea.innerHTML += `<input type="checkbox" id="${ingredient.split(' ').join('-')}" name="${ingredient.split(' ').join('-')}">${ingredient}`;
     }
   })
+  allIngredients.forEach(ingredient => {
+    console.log(ingredient.split(' ').join('-'))
+    let filterBoi = document.getElementById(ingredient.split(' ').join('-'));
+    filterBoi.addEventListener("change", getFilteredCards);
+    })
+  }
+
+
+function getFilteredCards(event){
+  recipeData.forEach(recipe => {
+    recipe.ingredients.forEach(ingredient =>{
+      if(ingredient.name === event.target.id.split('-').join(' ')){
+        filteredArray.push(recipe);
+      }
+    })
+  })
+}
+
+function instantiateFilteredRecipes() {
+  pageTitle.innerHTML = 'My Recipes!';
+  cardDisplay.innerHTML = '';
+  filteredArray.forEach((recipe, i) => {
+    cardDisplay.innerHTML += `
+    <button alt='${recipe.name}' class="recipe-card card${i} data-num='${recipe.id}'>
+      <div class="card-text">
+      </div>
+      <div class="button-arrangement">
+        <div class="heart"></div>
+        <div class="plus"></div>
+      </div>
+    </button>
+    `
+    let card = document.querySelector(`.card${i}`);
+    card.style.backgroundImage = `url(${recipe.image})`;
+    card.style.backgroundSize = 'cover';
+    heartButton = document.querySelector('.heart');
+  })
+  const favorite = document.querySelectorAll('.heart');
+  favorite.forEach(card => card.addEventListener('click', addFavoriteRecipe))
 }
 
 function displaySearchedRecipes() {
