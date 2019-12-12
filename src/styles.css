@@ -158,7 +158,12 @@ h1 {
   width: 90%;
   height: 50%;
   margin-top: 27%;
-  
+  animation-name: button-slide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  overflow-y:auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Creating the favorite heart on the card */
@@ -181,6 +186,11 @@ h1 {
 .heart:hover, .plus:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.filter-options{
+  display: flex;
+  flex-direction: row;
 }
 
 .button-arrangement {

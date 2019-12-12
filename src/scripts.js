@@ -7,8 +7,23 @@ const pageTitle = document.querySelector('h1');
 let searchButton = document.querySelector('.search-btn');
 const searchInput = document.querySelector('.search');
 const user = new User(users);
+//these variables are targeting HTML elements created later. They will be reassigned
 let heartButton;
+let filterArea;
 let cardDisplay;
+let ingredientCheckBox;
+let allIngredients = [];
+let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
+const ingredients = recipeData.forEach(recipe => {
+  recipe.ingredients.forEach((ingredient,i) => {
+    if(allIngredients.includes(ingredient.name)){
+      null;
+    }else{
+      allIngredients.push(ingredient.name);
+    }
+  })
+})
 
 
 window.addEventListener("click", functionRunner);
@@ -28,6 +43,7 @@ function addToSearchRecipes() {
   user.searchRecipes(recipeData, document.querySelector('.search').value);
 }
 
+
 function animateNavBar() {
   for(i = 0; i < welcomeBoxes.length; i++){
     welcomeBoxes[i].classList.add('faded');
@@ -46,9 +62,33 @@ function animateNavBar() {
       welcomeBoxes[i].classList.add("nav-popup");
       welcomeBoxes[i].classList.add("popup-animate");
     };
-    // navBar.innerHTML += `
-    // <div class="filter-area"></div>
-    // `;
+    navBar.innerHTML += `
+    <h2>Filter</h2>
+    <div class="filter-options">
+      <input type="checkbox" id="tag-option" name="tag-option" checked=true>Tag
+      <input type="checkbox" id="ingredient-option" name="ingredient-option">Ingredient
+    </div>
+    <div class="filter-area">
+      <input type="checkbox" id="breakfast" name="breakfast">Breakfast
+      <input type="checkbox" id="brunch" name="brunch">Brunch
+      <input type="checkbox" id="lunch" name="lunch">Lunch
+      <input type="checkbox" id="dinner" name="dinner">Dinner
+      <input type="checkbox" id="side-dish" name="side-dish">Side Dish
+      <input type="checkbox" id="main-dish" name="main-dish">Main Dish
+      <input type="checkbox" id="morning-meal" name="morning-meal">Morning Meal
+      <input type="checkbox" id="antipasti" name="antipasti">Antipasti
+      <input type="checkbox" id="starter" name="starter">Starter
+      <input type="checkbox" id="snack" name="snack">Snack
+      <input type="checkbox" id="appetizer" name="appetizer">Appetizer
+      <input type="checkbox" id="antipasto" name="antipasto">Antipasto
+      <input type="checkbox" id="hor-d'oeuvre" name="hor-d'oeuvre">Hor D'oeuvre
+      <input type="checkbox" id="salad" name="salad">Salad
+      <input type="checkbox" id="dip" name="dip">Dip
+      <input type="checkbox" id="spread" name="spread">Spread
+      <input type="checkbox" id="condiment" name="condiment">Condiment
+      <input type="checkbox" id="sauce" name="sauce">Sauce
+    </div>
+    `;
     body.innerHTML +=
     `
     <main>
@@ -56,10 +96,11 @@ function animateNavBar() {
     <section class="card-display"></section>
     </main>
 
-    `
+    `;
 
     instantiateRecipes(recipeData);
-
+    ingredientCheckBox = document.querySelector('#ingredient-option');
+    ingredientCheckBox.addEventListener("change", changeFilter)
   }, 1500);
 }
 
@@ -85,6 +126,26 @@ function instantiateRecipes(data) {
     }
     const favorite = document.querySelectorAll('.heart');
     favorite.forEach(card => card.addEventListener('click', addFavoriteRecipe))
+}
+
+function changeFilter(){
+  filterArea = document.querySelector(".filter-area");
+  filterArea.innerHTML = "";
+  alphabet.forEach(letter => {
+    filterArea.innerHTML += `<input type="checkbox" id="${letter}" name="${letter}">${letter}`;
+  })
+  alphabet.forEach(letter => {
+    document.getElementById(letter).addEventListener("change", sortRecipes);
+  })
+}
+
+function sortRecipes(event){
+  console.log(event.target.id);
+  allIngredients.forEach(ingredient => {
+    if(ingredient[0].includes(event.target.id)){
+      filterArea.innerHTML += `<input type="checkbox" id="" name="${ingredient}">${ingredient}`
+    }
+  })
 }
 
 function displaySearchedRecipes() {
