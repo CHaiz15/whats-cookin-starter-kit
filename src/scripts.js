@@ -80,17 +80,17 @@ function displayCardInfo() {
   <div alt='${clickedRecipe.name}' class="recipe-info" data-id="${clickedRecipe.id}">
   </div>
   <div class="info">
-  <h4>Ingredients Needed:</h4>
-  <ul class='ingredient-list'>
-  </ul>
-  <h4>Instructions:</h4>
-  <ul class='instruction-list'>
-  </ul>
+    <h4>Ingredients Needed:</h4>
+    <ul class='ingredient-list'>
+    </ul>
+    <h4>Instructions:</h4>
+    <ul class='instruction-list'>
+    </ul>
   </div>
   `
   let recipeInfo = document.querySelector('.recipe-info');
-    recipeInfo.style.backgroundImage = `url(${clickedRecipe.image})`;
-  let ingredientList = document.querySelector(".ingredient-list")
+  recipeInfo.style.backgroundImage = `url(${clickedRecipe.image})`;
+  let ingredientList = document.querySelector(".ingredient-list");
   clickedRecipe.ingredients.forEach(i => {
     ingredientList.innerHTML += `<li>${i.name}: ${i.quantity.amount} ${i.quantity.unit}.</li>`;
   })
@@ -267,6 +267,7 @@ function displaySearchedRecipes() {
     cardDisplay.innerHTML += `
     <button alt='${recipe.name}' class="recipe-card card${i}" data-id="${recipe.id}">
       <div class="card-text">
+      ${recipe.name}
       </div>
       <div class="button-arrangement">
         <div class="heart heartid${i}"></div>
