@@ -200,6 +200,16 @@ h1 {
   width: 90%;
   height: 50%;
   margin-top: 27%;
+  animation-name: button-slide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  overflow-y:auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.heart {
+  background-image: url('../images/heart-active.png');
 }
 
 .plus {
@@ -219,8 +229,15 @@ h1 {
   cursor: pointer;
 }
 
+
+.filter-options{
+  display: flex;
+  flex-direction: row;
+}
+
 .heart-active {
   opacity: 1;
+
 }
 
 .button-arrangement {
