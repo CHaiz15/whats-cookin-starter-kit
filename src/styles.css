@@ -13,6 +13,29 @@ main {
   height: 100%;
 }
 
+.recipe-info-title {
+  background-color: white;
+  width: 90%;
+  text-align: center;
+  text-shadow: 20px;
+  box-shadow: 15px 15px 35px 0px rgba(0, 0, 0, 0.6);
+  border: black 2px solid;
+  border-radius: 5px;
+}
+
+h4, ul, li {
+  font-size: 20px;
+  color: black;
+}
+
+.info {
+  background-color: white;
+  border: black 2px solid;
+  border-radius: 3%;
+}
+.page-title {
+  cursor: pointer;
+}
 .page-title, .page-welcome {
   background-color: white;
   width: 15%;
@@ -102,7 +125,6 @@ nav {
   cursor: none;
 }
 
-.nav-buttons {}
 
 .nav-popup {
   width: 95%;
@@ -110,6 +132,7 @@ nav {
   background-color: #ffffff;
   margin: 7px 0px 7px 0px;
   border-radius: 5%;
+  cursor: pointer;
 }
 
 .filter-area,

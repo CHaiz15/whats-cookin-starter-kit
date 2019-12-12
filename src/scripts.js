@@ -6,10 +6,10 @@ const allRecipesBox = document.querySelector('.all-recipes-box');
 const pantryBox = document.querySelector('.pantry-box');
 const myRecipesBox = document.querySelector('.my-recipes-box');
 const recipesToCookBox = document.querySelector('.recipes-to-cook-box');
-const pageWelcome = document.querySelector('.page-welcome');
+let pageWelcome = document.querySelector('.page-welcome');
 const user = new User(users[(Math.round(Math.random() * 50))]);
-const searchButton = document.querySelector('.search-btn');
-const searchInput = document.querySelector('.search');
+let searchButton = document.querySelector('.search-btn');
+let searchInput = document.querySelector('.search');
 const recipe = new Recipe(recipeData);
 const usersFavRecipes = JSON.parse(localStorage.getItem(`usersFavRecipes${user.id}`)) || [];
 // let heart;
@@ -21,6 +21,9 @@ window.addEventListener("click", functionRunner);
 pageWelcome.innerText = `Welcome, ${user.name}!`;
 
 function functionRunner() {
+  if (event.target.classList.contains('page-title')) {
+    goHome();
+  }
   if (event.target.classList.contains('menu-box')) {
     animateNavBar();
   }
@@ -39,23 +42,38 @@ function functionRunner() {
   }
 }
 
+function goHome() {
+  location.reload();
+}
+
 function displayCardInfo() {
-  let idValue = parseInt(event.target.dataset.id);
+  let clickedIdValue = parseInt(event.target.dataset.id);
+  let clickedRecipe = recipeData.find(recipe => recipe.id === clickedIdValue);
   let cardDisplay = document.querySelector(".card-display");
   cardDisplay.innerHTML = '';
   cardDisplay.innerHTML += `
-  <h2>${recipeData[0].name}</h2>
-  <div alt='${recipeData[0].name}' class="recipe-info" data-id="${recipeData[0].id}">
+  <h2 class="recipe-info-title">${clickedRecipe.name}</h2>
+  <div alt='${clickedRecipe.name}' class="recipe-info" data-id="${clickedRecipe.id}">
   </div>
+  <div class="info">
   <h4>Ingredients Needed:</h4>
   <ul class='ingredient-list'>
   </ul>
+  <h4>Instructions:</h4>
+  <ul class='instruction-list'>
+  </ul>
+  </div>
   `
-  recipeData[0].ingredients.forEach(i => {
-    
-  })
   let recipeInfo = document.querySelector('.recipe-info');
-  recipeInfo.style.backgroundImage = `url(${recipeData[0].image})`
+    recipeInfo.style.backgroundImage = `url(${clickedRecipe.image})`;
+  let ingredientList = document.querySelector(".ingredient-list")
+  clickedRecipe.ingredients.forEach(i => {
+    ingredientList.innerHTML += `<li>${i.name}: ${i.quantity.amount} ${i.quantity.unit}.</li>`;
+  })
+  let instructionList = document.querySelector(".instruction-list");
+  clickedRecipe.instructions.forEach(i => {
+    instructionList.innerHTML += `<li>${i.number}: ${i.instruction}</li>`;
+  })
 }
 
 function addToSearchRecipes() {
@@ -94,6 +112,8 @@ function animateNavBar() {
 }
 
 function instantiateAllRecipes(data) {
+  searchButton.style.display = 'initial';
+  searchInput.style.display = 'initial';
   if (data === recipeData) {
     pageWelcome.innerHTML = 'All Recipes!';
   } else if (data === user.favoriteRecipes) {
